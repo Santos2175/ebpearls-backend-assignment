@@ -27,13 +27,19 @@ export const addTask = async (req: Request, res: Response): Promise<void> => {
     const { title, description, status } = req.body;
 
     // adding new task
-    await Task.create({
+    const newTask = await Task.create({
       title,
       description,
       status,
     });
 
-    res.status(201).json({ success: true, message: `Task added successfully` });
+    res
+      .status(201)
+      .json({
+        success: true,
+        message: `Task added successfully`,
+        data: newTask,
+      });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });
   }
