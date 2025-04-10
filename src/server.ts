@@ -12,12 +12,9 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // middlewares
-app.use(express.json());
+app.use();
 
 // api routes
-app.get('/', (req, res) => {
-  res.send('Hello world');
-});
 
 app.listen(PORT, () => {
   connectToMongoDB();
