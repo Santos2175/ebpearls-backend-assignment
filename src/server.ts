@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 import { connectToMongoDB } from './config/db.config';
+import tasksRoutes from './routes/tasks.routes';
 
 dotenv.config();
 
@@ -12,9 +13,10 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // middlewares
-app.use();
+app.use(express.json());
 
 // api routes
+app.use('/api/tasks', tasksRoutes);
 
 app.listen(PORT, () => {
   connectToMongoDB();

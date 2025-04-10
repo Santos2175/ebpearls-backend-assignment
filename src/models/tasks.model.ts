@@ -22,4 +22,4 @@ const taskSchema = new Schema<ITask>(
 );
 
 // task model for communicating with db
-export const task = model('Task', taskSchema);
+export const Task = model('Task', taskSchema);
