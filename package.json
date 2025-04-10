@@ -1,0 +1,26 @@
+{
+  "name": "ebpearls-backend-assignment",
+  "version": "1.0.0",
+  "description": "It includes CRUD for task management",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "nodemon dist/server.js",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "nodemon": "nodemon"
+  },
+  "author": "Santosh Gurung",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.0",
+    "nodemon": "^3.1.9",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}

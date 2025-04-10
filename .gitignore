@@ -1,0 +1,5 @@
+#files to ignore in github
+node_modules/
+.env
+
+dist/
