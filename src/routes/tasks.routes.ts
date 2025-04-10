@@ -1,11 +1,11 @@
 import Router from 'express';
 
-import { getAllTasks } from '../controllers/tasks.controller';
+import { getAllTasks, addTask } from '../controllers/tasks.controller';
 
 const router = Router();
 
 // api routes
-router.route('/').get(getAllTasks);
+router.route('/').get(getAllTasks).post(addTask);
 
 // router.route('/:id').get().put().delete();
 
