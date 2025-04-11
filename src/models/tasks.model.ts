@@ -14,7 +14,7 @@ const taskSchema = new Schema<ITask>(
     },
     status: {
       type: String,
-      enum: TaskStatus,
+      enum: Object.values(TaskStatus),
       default: TaskStatus.Pending,
     },
   },

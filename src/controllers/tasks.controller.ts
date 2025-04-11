@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { Task } from '../models/tasks.model';
-import { isValidObjectId } from 'mongoose';
+import { isValidObjectId, SortOrder } from 'mongoose';
+import { ITaskResponse, TaskStatus } from '../interface/tasks';
+import { ITaskQuery } from '../interface/query';
 
 // controller to get all tasks
 export const getAllTasks = async (
@@ -8,15 +10,99 @@ export const getAllTasks = async (
   res: Response
 ): Promise<void> => {
   try {
-    const tasks = await Task.find();
+    // query params
+    const {
+      page = '1',
+      limit = '10',
+      sort = 'desc',
+      status,
+    }: ITaskQuery = req.query;
 
-    // check if tasks are there
-    if (!tasks?.length) {
-      res.status(404).json({ success: false, error: `No tasks found` });
+    // parsing pagination parameters
+    const pageNumberRaw = Number(page);
+    const limitNumberRaw = Number(limit);
+
+    // checks if page number or limit number is valid number or not
+    if (isNaN(pageNumberRaw) || isNaN(limitNumberRaw)) {
+      res.status(400).json({
+        success: false,
+        message: 'Invalid page or limit parameter',
+      });
       return;
     }
 
-    res.status(200).json({ success: true, tasks: tasks });
+    // setting for pagination
+    const pageNumber = Math.max(pageNumberRaw, 1);
+    const limitNumber = Math.max(limitNumberRaw, 1);
+    const offset = (pageNumber - 1) * limitNumber;
+
+    // search query for filtering data
+    const searchQuery: Record<string, any> = {};
+    if (status) {
+      // checks if status value is correct
+      if (!Object.values(TaskStatus).includes(status as TaskStatus)) {
+        res.status(400).json({ success: false, error: `Invalid status value` });
+        return;
+      }
+      searchQuery.status = status;
+    }
+
+    // for sorting the tasks
+    const sortOrder: SortOrder = sort === 'asc' ? 1 : -1;
+    const sortBy: { [key: string]: SortOrder } = { createdAt: sortOrder };
+
+    // counting total tasks and total pages
+    const totalTasks = await Task.countDocuments(searchQuery);
+    const totalPages = Math.ceil(totalTasks / limitNumber);
+
+    // retrieving tasks from database
+    const rawTasks = await Task.find(searchQuery)
+      .sort(sortBy)
+      .limit(limitNumber)
+      .skip(offset)
+      .lean<ITaskResponse[]>()
+      .exec();
+
+    // pagination object containing details about page and tasks
+    const pagination = {
+      currentPage: pageNumber,
+      totalPages,
+      totalTasks,
+      limit: limitNumber,
+    };
+
+    // check if tasks are there
+    if (!rawTasks?.length) {
+      res.status(200).json({
+        success: true,
+        message: `No tasks found`,
+        data: {
+          tasks: [],
+          pagination,
+        },
+      });
+      return;
+    }
+
+    // map tasks to match ITaskResponse
+    const tasks: ITaskResponse[] = rawTasks.map((task) => ({
+      _id: task._id.toString(),
+      title: task.title,
+      description: task.description,
+      status: task.status,
+      createdAt: task.createdAt,
+      updatedAt: task.updatedAt,
+    }));
+
+    // successful response of tasks
+    res.status(200).json({
+      success: true,
+      message: `Tasks retrieved successfully`,
+      data: {
+        tasks,
+        pagination,
+      },
+    });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -53,7 +139,7 @@ export const getTaskById = async (
     const { id } = req.params;
 
     // validate object id
-    if (!isValidObjectId) {
+    if (!isValidObjectId(id)) {
       res.status(400).json({ success: false, error: `Invalid Task ID` });
       return;
     }
