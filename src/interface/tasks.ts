@@ -2,6 +2,7 @@
 export enum Status {
   PENDING = 'pending',
   COMPLETED = 'completed',
+  INPROGRESS = 'in-progress',
 }
 
 // interface types for task

@@ -18,6 +18,8 @@ const taskSchema = new Schema<ITask>(
       default: Status.PENDING,
     },
   },
+
+  // this returns the createdAt and updatedAt fields
   { timestamps: true }
 );
 
