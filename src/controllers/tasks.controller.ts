@@ -120,3 +120,39 @@ export const updateTaskById = async (
     res.status(500).json({ success: false, error: error.message });
   }
 };
+
+// delete task by id
+export const deleteTaskById = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+
+    // validate task id
+    if (!isValidObjectId(id)) {
+      res.status(400).json({ success: false, error: `Invalid Task ID` });
+      return;
+    }
+
+    // check if the task with given id exists
+    const task = await Task.findById(id);
+
+    if (!task) {
+      res
+        .status(404)
+        .json({ success: false, error: `Task with given ID not found` });
+      return;
+    }
+
+    // delete task
+    await Task.findByIdAndDelete(id);
+
+    // response success deletion
+    res
+      .status(200)
+      .json({ success: true, message: `Task deleted successfully` });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
