@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 import { connectToMongoDB } from './config/db.config';
 import tasksRoutes from './routes/tasks.routes';
+import { globalErrorHandler } from './middlewares/errorHandler';
 
 dotenv.config();
 
@@ -17,6 +18,9 @@ app.use(express.json());
 
 // api routes
 app.use('/api/tasks', tasksRoutes);
+
+// global error handler middleware
+app.use(globalErrorHandler);
 
 app.listen(PORT, () => {
   connectToMongoDB();
