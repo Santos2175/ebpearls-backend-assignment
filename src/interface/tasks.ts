@@ -1,15 +1,15 @@
 // enum types for status
-export enum Status {
-  PENDING = 'pending',
-  COMPLETED = 'completed',
-  INPROGRESS = 'in-progress',
+export enum TaskStatus {
+  Pending = 'pending',
+  Completed = 'completed',
+  InProgress = 'in-progress',
 }
 
 // interface types for task
 export interface ITask {
   title: string;
   description: string;
-  status: Status;
+  status: TaskStatus;
 }
 
 // interface types for task response

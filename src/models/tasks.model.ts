@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { ITask, Status } from '../interface/tasks';
+import { ITask, TaskStatus } from '../interface/tasks';
 
 // task schema definition
 const taskSchema = new Schema<ITask>(
@@ -14,8 +14,8 @@ const taskSchema = new Schema<ITask>(
     },
     status: {
       type: String,
-      enum: Status,
-      default: Status.PENDING,
+      enum: TaskStatus,
+      default: TaskStatus.Pending,
     },
   },
 
