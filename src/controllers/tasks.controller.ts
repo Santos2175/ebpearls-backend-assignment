@@ -156,3 +156,46 @@ export const deleteTaskById = async (
     res.status(500).json({ success: false, error: error.message });
   }
 };
+
+// controller to update task status by id
+export const updateStatusByTaskId = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    // validate task id
+    if (!isValidObjectId(id)) {
+      res.status(400).json({ success: false, error: `Invalid Task ID` });
+      return;
+    }
+
+    // check if task with given id exists
+    const task = await Task.findById(id);
+
+    if (!task) {
+      res
+        .status(404)
+        .json({ success: false, error: `Task with given ID not found` });
+      return;
+    }
+
+    // update the status of given task id
+    const updatedTask = await Task.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true, runValidators: true }
+    );
+
+    // response status update
+    res.status(200).json({
+      success: true,
+      message: `Task status updated successfully`,
+      data: updatedTask,
+    });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};

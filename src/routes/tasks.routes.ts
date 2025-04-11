@@ -6,11 +6,12 @@ import {
   getTaskById,
   updateTaskById,
   deleteTaskById,
+  updateStatusByTaskId,
 } from '../controllers/tasks.controller';
 
 const router = Router();
 
-// api routes
+// api routes for task
 router.route('/').get(getAllTasks).post(addTask);
 
 router
@@ -19,6 +20,6 @@ router
   .put(updateTaskById)
   .delete(deleteTaskById);
 
-// router.route('/:id/status').patch();
+router.route('/:id/status').patch(updateStatusByTaskId);
 
 export default router;
