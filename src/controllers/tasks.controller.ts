@@ -74,3 +74,49 @@ export const getTaskById = async (
     res.status(500).json({ success: false, error: error.message });
   }
 };
+
+// update task by id
+export const updateTaskById = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const { title, description, status } = req.body;
+
+    // validate task id
+    if (!isValidObjectId(id)) {
+      res.status(400).json({ success: false, error: `Invalid Task ID` });
+      return;
+    }
+
+    // check if task with given id exists
+    const task = await Task.findById(id);
+    if (!task) {
+      res
+        .status(404)
+        .json({ success: false, error: `Task with given ID not found` });
+      return;
+    }
+
+    // update the task with respective id
+    const updatedTask = await Task.findByIdAndUpdate(
+      id,
+      {
+        title,
+        description,
+        status,
+      },
+      { new: true }
+    );
+
+    // response success
+    res.status(200).json({
+      success: true,
+      message: `Task updated successfully`,
+      data: updatedTask,
+    });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
