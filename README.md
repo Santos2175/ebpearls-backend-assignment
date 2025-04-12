@@ -9,9 +9,9 @@
   - [Installation](#installation)
   - [Environment Variables](#environment-variables)
   - [Running the Server](#running-the-server)
-- [Project Structure](#project-structure)
 - [API Overview](#api-overview)
 - [API Documentation](#api-documentation)
+- [Postman Collection](#postman-collection)
 - [License](#license)
 
 ---
@@ -106,6 +106,14 @@ or, if you want to run it in development mode without compiling to `dist/` folde
 ### API Documentation
 
 For a detailed API documentation with request/response examples, status codes, and error handling, see [docs/api/task.md](./docs/api/task.md).
+
+---
+
+### Postman Collection 
+You can import the Postman collection for the Task Management API to test the endpoints directly. The collection includes all the requests along with example responses.
+
+1. Download the collection from the following link: [Postman Collection](./tasks.postman_collection.json)
+2. Import it into your Postman app and start testing the API.
 
 ---
 ### License
