@@ -73,6 +73,7 @@ Create a `.env` file at the root of the project and add the following environmen
 1. **Build the project** using the TypeScript compiler. This will generate the `dist/` folder containing the compiled JavaScript files:
    ```bash
    npm run build
+   ```
 
 2. **Start the server** using the compiled files.
    ```bash
