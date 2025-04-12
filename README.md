@@ -78,7 +78,8 @@ Create a `.env` file at the root of the project and add the following environmen
    ```bash
     npm start
    ```
-   or, if you want to run it in development mode using `ts-node`
+
+or, if you want to run it in development mode without compiling to `dist/` folder.
    ```bash
    npm run dev
    ```
