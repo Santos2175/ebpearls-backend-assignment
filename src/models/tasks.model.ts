@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { ITask, TaskStatus } from '../interface/tasks';
+import { ITask, TaskStatus } from '../interface/tasks.js';
 
 // task schema definition
 const taskSchema = new Schema<ITask>(

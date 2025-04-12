@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { AppError } from './errorHandler';
+import { AppError } from './errorHandler.js';
 
 // middleware to check for undefined routes
 export const undefinedRouteHandler = async (

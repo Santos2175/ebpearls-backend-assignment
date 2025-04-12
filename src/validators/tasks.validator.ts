@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { TaskStatus } from '../interface/tasks';
+import { TaskStatus } from '../interface/tasks.js';
 
 // validator schema for task input
 export const taskInputSchema = Joi.object({

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { Task } from '../models/tasks.model';
 import { isValidObjectId, SortOrder } from 'mongoose';
-import { ITaskResponse, TaskStatus } from '../interface/tasks';
-import { ITaskQuery } from '../interface/query';
+import { Task } from '../models/tasks.model.js';
+import { ITaskResponse, TaskStatus } from '../interface/tasks.js';
+import { ITaskQuery } from '../interface/query.js';
 
 // controller to get all tasks
 export const getAllTasks = async (

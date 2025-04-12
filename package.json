@@ -2,6 +2,7 @@
   "name": "ebpearls-backend-assignment",
   "version": "1.0.0",
   "description": "It includes CRUD for task management",
+  "type": "module",
   "main": "server.ts",
   "scripts": {
     "dev": "nodemon dist/server.js",

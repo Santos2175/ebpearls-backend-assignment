@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { ObjectSchema } from 'joi';
 
-import { AppError } from './errorHandler';
+import { AppError } from './errorHandler.js';
 
 // middleware for input validation
 export const validateInput = (schema: ObjectSchema) => {

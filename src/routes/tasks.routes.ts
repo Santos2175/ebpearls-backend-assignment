@@ -1,6 +1,6 @@
 import Router from 'express';
 
-import { validateInput } from '../middlewares/validateInput';
+import { validateInput } from '../middlewares/validateInput.js';
 import {
   getAllTasks,
   addTask,
@@ -8,13 +8,13 @@ import {
   updateTaskById,
   deleteTaskById,
   updateStatusByTaskId,
-} from '../controllers/tasks.controller';
+} from '../controllers/tasks.controller.js';
 
 import {
   taskInputSchema,
   taskUpdateSchema,
   taskStatusUpdateSchema,
-} from '../validators/tasks.validator';
+} from '../validators/tasks.validator.js';
 
 // router initialization
 const router = Router();

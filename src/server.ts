@@ -1,10 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
-import { connectToMongoDB } from './config/db.config';
-import tasksRoutes from './routes/tasks.routes';
-import { globalErrorHandler } from './middlewares/errorHandler';
-import { undefinedRouteHandler } from './middlewares/routesHandler';
+import { connectToMongoDB } from './config/db.config.js';
+import tasksRoutes from './routes/tasks.routes.js';
+import { globalErrorHandler } from './middlewares/errorHandler.js';
+import { undefinedRouteHandler } from './middlewares/routesHandler.js';
 
 dotenv.config();
 
