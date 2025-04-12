@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 import { connectToMongoDB } from './config/db.config.js';
-import tasksRoutes from './routes/tasks.routes.js';
+import apiRoutes from './routes/index.routes.js';
 import { globalErrorHandler } from './middlewares/errorHandler.js';
 import { undefinedRouteHandler } from './middlewares/routesHandler.js';
 
@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 
 // api routes
-app.use('/api/tasks', tasksRoutes);
+app.use('/api', apiRoutes);
 
 // check undefined route error handler
 app.use(undefinedRouteHandler);
