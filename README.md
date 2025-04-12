@@ -86,14 +86,19 @@ Create a `.env` file at the root of the project and add the following environmen
 ---
 
 ### API Overview
+
+**Base URL :** `http://localhost:7000/api` (for development)
+
+**Note :** The PORT may vary based on your port definition in your `.env` file. Here in my case, it is 7000.
+
 | Method | End-Point | Description |
 | --- | --- | --- |
-| `GET` | `/api/tasks` | List all *tasks* |
-| `GET` | `/api/tasks/:id` | Fetch a specific *task* |
-| `POST` | `/api/tasks/` | Create a new *task* |
-| `PUT` | `/api/tasks/:id` | Update a specific *task* |
-| `PATCH` | `/api/tasks/:id/status` | Update only the status of a specific *task* |
-| `DELETE` | `/api/tasks/:id` | Delete a specific *task* |
+| `GET` | `/tasks` | List all *tasks* |
+| `GET` | `/tasks/:id` | Fetch a specific *task* |
+| `POST` | `/tasks/` | Create a new *task* |
+| `PUT` | `/tasks/:id` | Update a specific *task* |
+| `PATCH` | `/tasks/:id/status` | Update only the status of a specific *task* |
+| `DELETE` | `/tasks/:id` | Delete a specific *task* |
 
 ---
 
