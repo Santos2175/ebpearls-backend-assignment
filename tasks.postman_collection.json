@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "dc56dffe-188f-40f6-bd05-7bedd2f90b7e",
+		"name": "tasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37221655"
+	},
+	"item": [
+		{
+			"name": "get all tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": "## GET `/tasks`\n\nFetch all the tasks.\n\n### Request\n\n- METHOD: `GET`\n    \n- URL: `/tasks`\n    \n\n### Path Params\n\nNone\n\n### Query Params (Optional)\n\n- `status`: Filter tasks by their status (`pending`, `completed`, `in-progress`)\n    \n- `page`: Page number for pagination (default:`1`)\n    \n- `limit`: Number of tasks per page (default:`10`)\n    \n- `sort`: Orders the task based on date created. `desc` for new date to old and `asc` for old date to new. (default:`desc`)\n    \n- Example of use case: `http://localhost:7000/api/tasks?status=pending&page=1&limit=1&sort=asc`\n    \n\n### Success Response (When tasks are available)\n\n- STATUS: `200 OK`\n    \n\n``` json\n{\n  \"success\": true,\n  \"message\": \"Tasks retrieved successfully\",\n  \"data\": {\n    \"tasks\": [\n      {\n        \"_id\": \"67faa25031d2991f856b6b5d\",\n        \"title\": \"Exercise\",\n        \"description\": \"I am going for a jog tomorrow morning.\",\n        \"status\": \"pending\",\n        \"createdAt\": \"2025-04-12T17:26:40.035Z\",\n        \"updatedAt\": \"2025-04-12T17:26:40.035Z\"\n      },\n      {\n        \"_id\": \"67f8aaa3e812dbd3db10f615\",\n        \"title\": \"Read\",\n        \"description\": \"Prepare for maths test\",\n        \"status\": \"pending\",\n        \"createdAt\": \"2025-04-11T05:37:39.220Z\",\n        \"updatedAt\": \"2025-04-11T05:37:39.220Z\"\n      },\n      {\n        \"_id\": \"67f8023afdd21dc9d6973404\",\n        \"title\": \"Greet\",\n        \"description\": \"Need to greet teacher at school\",\n        \"status\": \"in-progress\",\n        \"createdAt\": \"2025-04-10T17:39:06.572Z\",\n        \"updatedAt\": \"2025-04-12T17:34:43.694Z\"\n      }\n    ],\n    \"pagination\": {\n      \"currentPage\": 1,\n      \"totalPages\": 1,\n      \"totalTasks\": 3,\n      \"limit\": 10\n    }\n  }\n}\n\n ```\n\n### Success Response (When there are no tasks)\n\n- STATUS: `200 OK`\n    \n\n``` json\n{\n  \"success\": true,\n  \"message\": \"No tasks found\",\n  \"data\": {\n    \"tasks\": [],\n    \"pagination\": {\n      \"currentPage\": 1,\n      \"totalPages\": 1,\n      \"totalTasks\": 0,\n      \"limit\": 10\n    }\n  }\n}\n\n ```\n\n**Note :** A 200 OK response with an empty tasks: \\[\\] array means the request was successful, but there are no tasks currently available. This follows standard REST practices."
+			},
+			"response": []
+		},
+		{
+			"name": "add task",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Exercise\",\r\n    \"description\":\"I am going for a jog tomorrow morning.\",\r\n    \"status\":\"pending\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": "## POST `/tasks`\n\nCreate new task.\n\n### Request\n\n- METHOD: `POST`\n    \n- URL: `/tasks`\n    \n\n### Path Params\n\nNone\n\n### Request Body\n\n``` json\n{\n    \"title\":\"Exercise\",\n    \"description\":\"I am going for a jog tomorrow morning.\",\n    \"status\":\"pending\"\n}\n\n ```\n\n### Success Response\n\n- STATUS: `201 created`\n    \n\n``` json\n {\n    \"success\": true,\n    \"message\": \"Task added successfully\",\n    \"data\": {\n        \"title\": \"Exercise\",\n        \"description\": \"I am going for a jog tomorrow morning.\",\n        \"status\": \"pending\",\n        \"_id\": \"67faa25031d2991f856b6b5d\",\n        \"createdAt\": \"2025-04-12T17:26:40.035Z\",\n        \"updatedAt\": \"2025-04-12T17:26:40.035Z\",\n        \"__v\": 0\n    }\n}\n\n ```\n\n### Error Response\n\n- { \"success\": false, \"error\": \\[ \"Title is required\", \"Description is required\" \\]}"
+			},
+			"response": []
+		},
+		{
+			"name": "get task by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/tasks/67f8023afdd21dc9d6973404",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"tasks",
+						"67f8023afdd21dc9d6973404"
+					]
+				},
+				"description": "## GET `/tasks/:id`\n\nFetch the specific task by `id`.\n\n### Request\n\n- METHOD: `GET`\n    \n- URL: `/tasks/:id`\n    \n\n### Path Params\n\n- id: id of the task to fetch.\n    \n\n### Success Response\n\n- STATUS: `200 OK`\n    \n\n``` json\n{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"67f8023afdd21dc9d6973404\",\n        \"title\": \"Greet\",\n        \"description\": \"Need to greet parents and elders\",\n        \"status\": \"pending\",\n        \"createdAt\": \"2025-04-10T17:39:06.572Z\",\n        \"updatedAt\": \"2025-04-11T06:00:41.066Z\",\n        \"__v\": 0\n    }\n}\n\n ```\n\n### Error Response\n\n- { \"success\": false, \"error\": \"Task with given ID not found\"}\n    \n- { \"success\": false, \"error\": \"Invalid Task ID\"}"
+			},
+			"response": []
+		},
+		{
+			"name": "update task by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Greet\",\r\n    \"description\":\"Need to greet teacher at school\",\r\n    \"status\":\"pending\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/api/tasks/67f8023afdd21dc9d6973404",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"tasks",
+						"67f8023afdd21dc9d6973404"
+					]
+				},
+				"description": "## PUT `/tasks/:id`\n\nUpdate a specific task by id.\n\n### Request\n\n- METHOD: `PUT`\n    \n- URL: `/tasks/:id`\n    \n\n### Path Params\n\n- id: the id of the task to be updated.\n    \n\n### Request Body\n\n``` json\n{\n    \"title\":\"Greet\",\n    \"description\":\"Need to greet teacher at school\",\n    \"status\":\"pending\"\n}\n\n ```\n\n### Success Response\n\n- STATUS: `200 OK`\n    \n\n``` json\n{\n    \"success\": true,\n    \"message\": \"Task updated successfully\",\n    \"data\": {\n        \"_id\": \"67f8023afdd21dc9d6973404\",\n        \"title\": \"Greet\",\n        \"description\": \"Need to greet teacher at school\",\n        \"status\": \"pending\",\n        \"createdAt\": \"2025-04-10T17:39:06.572Z\",\n        \"updatedAt\": \"2025-04-12T17:31:39.465Z\",\n        \"__v\": 0\n    }\n}\n\n ```\n\n### Error Response\n\n- { \"success\": false, \"error\": \"Task with given ID not found\"}\n    \n- { \"success\": false, \"error\": \\[ \"Title is required\", \"Description is required\", \"Status is required\" \\]}"
+			},
+			"response": []
+		},
+		{
+			"name": "delete task by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/tasks/67f8ab0ae812dbd3db10f619",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"tasks",
+						"67f8ab0ae812dbd3db10f619"
+					]
+				},
+				"description": "## DELETE `/tasks/:id`\n\nDelete a specific task by id.\n\n### Request\n\n- METHOD: `DELETE`\n    \n- URL: `/tasks/:id`\n    \n\n### Path Params\n\n- id: the id of the task to be deleted.\n    \n\n### Success Response\n\n- STATUS: `200 OK`\n    \n\n``` json\n{\n    \"success\": true,\n    \"message\": \"Task deleted successfully\"\n}\n\n ```\n\n### Error Response\n\n- { \"success\": false, \"error\": \"Task with given ID not found\"}"
+			},
+			"response": []
+		},
+		{
+			"name": "update status by task id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"in-progress\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/api/tasks/67f8023afdd21dc9d6973404/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"tasks",
+						"67f8023afdd21dc9d6973404",
+						"status"
+					]
+				},
+				"description": "## PATCH `/tasks/:id/status`\n\nUpdate the status of specific task by id.\n\n### Request\n\n- METHOD: `PATCH`\n    \n- URL: `/tasks/:id/status`\n    \n\n### Path Params\n\n- id: the id of the task whose status is to be updated.\n    \n\n### Request Body\n\n``` json\n{\n    \"status\":\"in-progress\"\n}\n\n ```\n\n### Success Response\n\n- STATUS: `200 OK`\n    \n\n``` json\n{\n    \"success\": true,\n    \"message\": \"Task status updated successfully\",\n    \"data\": {\n        \"_id\": \"67f8023afdd21dc9d6973404\",\n        \"title\": \"Greet\",\n        \"description\": \"Need to greet teacher at school\",\n        \"status\": \"in-progress\",\n        \"createdAt\": \"2025-04-10T17:39:06.572Z\",\n        \"updatedAt\": \"2025-04-12T17:34:43.694Z\",\n        \"__v\": 0\n    }\n}\n\n ```\n\n### Error Response\n\n- { \"success\": false, \"error\": \"Task with given ID not found\"}\n    \n- { \"success\": false, \"error\": \\[ \"Status is required\" \\]}\n    \n- { \"success\": false, \"error\": \\[ \"Status must be one of: pending, completed, in-progress\" \\]}"
+			},
+			"response": []
+		}
+	]
+}
