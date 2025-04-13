@@ -19,6 +19,9 @@
 ## Introduction
 This is a simple Task Management REST API built as part of an assignment provided by the EB Pearls team. It allows users to create, update, delete, and manage tasks efficiently using clean RESTful architecture.
 
+🔗 **Live API**: [https://tasks-management.up.railway.app/api/tasks/](https://tasks-management.up.railway.app/api/tasks/)
+You can look at the use of this api with query params and what it returns in responses inside `docs/api/task.md`
+
 ---
 ## Features
 - **CRUD Operations** for tasks
