@@ -24,6 +24,9 @@ const taskSchema = new Schema<ITask>(
   { timestamps: true }
 );
 
+// compound index with status and createdAt for fast retrievel
+taskSchema.index({ status: 1, createdAt: -1 });
+
 // formatting the timestamps date in 'YYYY-MM-DD HH:mm:ss' format
 taskSchema.set('toJSON', {
   versionKey: false,
