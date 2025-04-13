@@ -48,43 +48,52 @@ None
 
 ```json
 {
-  "success": true,
-  "message": "Tasks retrieved successfully",
-  "data": {
-    "tasks": [
-      {
-        "_id": "67faa25031d2991f856b6b5d",
-        "title": "Exercise",
-        "description": "I am going for a jog tomorrow morning.",
-        "status": "pending",
-        "createdAt": "2025-04-12T17:26:40.035Z",
-        "updatedAt": "2025-04-12T17:26:40.035Z"
-      },
-      {
-        "_id": "67f8aaa3e812dbd3db10f615",
-        "title": "Read",
-        "description": "Prepare for maths test",
-        "status": "pending",
-        "createdAt": "2025-04-11T05:37:39.220Z",
-        "updatedAt": "2025-04-11T05:37:39.220Z"
-      },
-      {
-        "_id": "67f8023afdd21dc9d6973404",
-        "title": "Greet",
-        "description": "Need to greet teacher at school",
-        "status": "in-progress",
-        "createdAt": "2025-04-10T17:39:06.572Z",
-        "updatedAt": "2025-04-12T17:34:43.694Z"
-      }
-    ],
-    "pagination": {
-      "currentPage": 1,
-      "totalPages": 1,
-      "totalTasks": 3,
-      "limit": 10
+    "success": true,
+    "message": "Tasks retrieved successfully",
+    "data": {
+        "tasks": [
+            {
+                "_id": "67fac58b27e7ab9338bb8526",
+                "title": "Exercise",
+                "description": "I am going for a jog tomorrow morning.",
+                "status": "pending",
+                "createdAt": "2025-04-13 01:41:59",
+                "updatedAt": "2025-04-13 01:41:59"
+            },
+            {
+                "_id": "67faa25031d2991f856b6b5d",
+                "title": "Exercise",
+                "description": "I am going for a jog tomorrow morning.",
+                "status": "pending",
+                "createdAt": "2025-04-12 23:11:40",
+                "updatedAt": "2025-04-12 23:11:40"
+            },
+            {
+                "_id": "67f8aaa3e812dbd3db10f615",
+                "title": "Read",
+                "description": "Prepare for maths test",
+                "status": "pending",
+                "createdAt": "2025-04-11 11:22:39",
+                "updatedAt": "2025-04-11 11:22:39"
+            },
+            {
+                "_id": "67f8023afdd21dc9d6973404",
+                "title": "Greet",
+                "description": "Need to greet teacher at school",
+                "status": "pending",
+                "createdAt": "2025-04-10 23:24:06",
+                "updatedAt": "2025-04-13 13:41:21"
+            }
+        ],
+        "pagination": {
+            "currentPage": 1,
+            "totalPages": 1,
+            "totalTasks": 4,
+            "limit": 10
+        }
     }
-  }
 }
+
 ```
 
 ### Success Response (When there are no tasks)
@@ -130,17 +139,17 @@ Fetch the specific task by `id`.
 
 ```json
 {
-  "success": true,
-  "data": {
-    "_id": "67f8023afdd21dc9d6973404",
-    "title": "Greet",
-    "description": "Need to greet parents and elders",
-    "status": "pending",
-    "createdAt": "2025-04-10T17:39:06.572Z",
-    "updatedAt": "2025-04-11T06:00:41.066Z",
-    "__v": 0
-  }
+    "success": true,
+    "data": {
+        "_id": "67f8023afdd21dc9d6973404",
+        "title": "Greet",
+        "description": "Need to greet teacher at school",
+        "status": "pending",
+        "createdAt": "2025-04-10 23:24:06",
+        "updatedAt": "2025-04-13 13:41:21"
+    }
 }
+
 ```
 
 ### Error Response
@@ -194,18 +203,18 @@ None
 
 ```json
 {
-  "success": true,
-  "message": "Task added successfully",
-  "data": {
-    "title": "Exercise",
-    "description": "I am going for a jog tomorrow morning.",
-    "status": "pending",
-    "_id": "67faa25031d2991f856b6b5d",
-    "createdAt": "2025-04-12T17:26:40.035Z",
-    "updatedAt": "2025-04-12T17:26:40.035Z",
-    "__v": 0
-  }
+    "success": true,
+    "message": "Task added successfully",
+    "data": {
+        "title": "Exercise",
+        "description": "I am going for a jog tomorrow morning.",
+        "status": "pending",
+        "_id": "67fb72fe1b315b41b75b25f2",
+        "createdAt": "2025-04-13 14:02:02",
+        "updatedAt": "2025-04-13 14:02:02"
+    }
 }
+
 ```
 
 ### Error Response
@@ -250,18 +259,18 @@ Update a specific task by id.
 
 ```json
 {
-  "success": true,
-  "message": "Task updated successfully",
-  "data": {
-    "_id": "67f8023afdd21dc9d6973404",
-    "title": "Greet",
-    "description": "Need to greet teacher at school",
-    "status": "pending",
-    "createdAt": "2025-04-10T17:39:06.572Z",
-    "updatedAt": "2025-04-12T17:31:39.465Z",
-    "__v": 0
-  }
+    "success": true,
+    "message": "Task updated successfully",
+    "data": {
+        "_id": "67f8023afdd21dc9d6973404",
+        "title": "Greet",
+        "description": "Need to greet teacher at school",
+        "status": "pending",
+        "createdAt": "2025-04-10 23:24:06",
+        "updatedAt": "2025-04-13 14:05:41"
+    }
 }
+
 ```
 
 ### Error Response
@@ -317,18 +326,18 @@ Update the status of specific task by id.
 
 ```json
 {
-  "success": true,
-  "message": "Task status updated successfully",
-  "data": {
-    "_id": "67f8023afdd21dc9d6973404",
-    "title": "Greet",
-    "description": "Need to greet teacher at school",
-    "status": "in-progress",
-    "createdAt": "2025-04-10T17:39:06.572Z",
-    "updatedAt": "2025-04-12T17:34:43.694Z",
-    "__v": 0
-  }
+    "success": true,
+    "message": "Task status updated successfully",
+    "data": {
+        "_id": "67f8023afdd21dc9d6973404",
+        "title": "Greet",
+        "description": "Need to greet teacher at school",
+        "status": "in-progress",
+        "createdAt": "2025-04-10 23:24:06",
+        "updatedAt": "2025-04-13 14:06:07"
+    }
 }
+
 ```
 
 ### Error Response
