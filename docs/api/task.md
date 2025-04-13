@@ -40,7 +40,9 @@ None
 - `page`: Page number for pagination (default:`1`)
 - `limit`: Number of tasks per page (default:`10`)
 - `sort`: Orders the task based on date created. `desc` for new date to old and `asc` for old date to new. (default:`desc`)
-- Example of use case: `http://localhost:7000/api/tasks?status=pending&page=1&limit=1&sort=asc`
+- Example of use case:
+  - `http://localhost:7000/api/tasks?status=pending&page=1&limit=1&sort=asc` (development)
+  - `https://tasks-management.up.railway.app/api/tasks?status=pending&page=1&limit=1&sort=asc` (production)
 
 ### Success Response (When tasks are available)
 
