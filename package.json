@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "It includes CRUD for task management",
   "type": "module",
-  "main": "server.ts",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon dist/server.js",
     "build": "tsc",
@@ -17,11 +17,13 @@
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "joi": "^17.13.3",
-    "mongoose": "^8.13.2"
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
     "@types/node": "^22.14.0",
     "nodemon": "^3.1.9",
     "tsx": "^4.19.3",
