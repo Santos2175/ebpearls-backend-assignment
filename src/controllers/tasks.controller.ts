@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import { isValidObjectId, SortOrder } from 'mongoose';
+
 import { Task } from '../models/tasks.model.js';
 import { ITaskResponse, TaskStatus } from '../interface/tasks.js';
 import { ITaskQuery } from '../interface/query.js';
+import { formatDate } from '../utilities/dateFormatter.js';
 
 // controller to get all tasks
 export const getAllTasks = async (
@@ -60,7 +62,7 @@ export const getAllTasks = async (
       .sort(sortBy)
       .limit(limitNumber)
       .skip(offset)
-      .lean<ITaskResponse[]>()
+      .lean<ITaskResponse[]>({ getters: true })
       .exec();
 
     // pagination object containing details about page and tasks
@@ -90,8 +92,8 @@ export const getAllTasks = async (
       title: task.title,
       description: task.description,
       status: task.status,
-      createdAt: task.createdAt,
-      updatedAt: task.updatedAt,
+      createdAt: formatDate(task.createdAt),
+      updatedAt: formatDate(task.updatedAt),
     }));
 
     // successful response of tasks
@@ -145,7 +147,7 @@ export const getTaskById = async (
     }
 
     // check if task with given id is present
-    const task = await Task.findById(id);
+    const task: ITaskResponse | null = await Task.findById(id);
 
     if (!task) {
       res
@@ -177,7 +179,7 @@ export const updateTaskById = async (
     }
 
     // check if task with given id exists
-    const task = await Task.findById(id);
+    const task: ITaskResponse | null = await Task.findById(id);
     if (!task) {
       res
         .status(404)
@@ -186,7 +188,7 @@ export const updateTaskById = async (
     }
 
     // update the task with respective id
-    const updatedTask = await Task.findByIdAndUpdate(
+    const updatedTask: ITaskResponse | null = await Task.findByIdAndUpdate(
       id,
       {
         title,
@@ -222,7 +224,7 @@ export const deleteTaskById = async (
     }
 
     // check if the task with given id exists
-    const task = await Task.findById(id);
+    const task: ITaskResponse | null = await Task.findById(id);
 
     if (!task) {
       res
@@ -259,7 +261,7 @@ export const updateStatusByTaskId = async (
     }
 
     // check if task with given id exists
-    const task = await Task.findById(id);
+    const task: ITaskResponse | null = await Task.findById(id);
 
     if (!task) {
       res
@@ -269,7 +271,7 @@ export const updateStatusByTaskId = async (
     }
 
     // update the status of given task id
-    const updatedTask = await Task.findByIdAndUpdate(
+    const updatedTask: ITaskResponse | null = await Task.findByIdAndUpdate(
       id,
       { status },
       { new: true, runValidators: true }

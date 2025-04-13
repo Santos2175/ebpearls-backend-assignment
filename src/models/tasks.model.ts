@@ -26,6 +26,7 @@ const taskSchema = new Schema<ITask>(
 
 // formatting the timestamps date in 'YYYY-MM-DD HH:mm:ss' format
 taskSchema.set('toJSON', {
+  versionKey: false,
   transform: function (_, ret) {
     // format createdAt and updatedAt
     ret.createdAt = formatDate(ret.createdAt);

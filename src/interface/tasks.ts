@@ -15,6 +15,6 @@ export interface ITask {
 // interface types for task response
 export interface ITaskResponse extends ITask {
   _id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
