@@ -70,6 +70,7 @@ Create a `.env` file at the root of the project and add the following environmen
   ```bash
   PORT=7000 or your-desired-port-number
   MONGO_URI=your-mongo-uri
+  NODE_ENV=development or production 
   ```
 
 ### Running the Server
